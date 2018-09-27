@@ -13,7 +13,7 @@ export class RestaurantsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.restaurantsService.createDummy();
+
   }
 
 }

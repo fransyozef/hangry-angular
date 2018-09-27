@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 
 import { Restaurant } from '../_models/restaurant.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,19 +14,27 @@ export class RestaurantsService {
 
   private items: Restaurant[] = [];
 
-  constructor() { 
-    this.createDummy();
+  constructor(
+    private http: HttpClient,
+  ) {
+  }
+
+  fetch(): Observable<any> {
+    return this.http.get('/restaurants').pipe(
+      map((data: Response) => {
+        if (data && data['success'] && data['success'] === true) {
+          data['result'].map((element) => {
+            this.items.push(new Restaurant(element['id'] , element['name']));
+          });
+          return this.items;
+        } else {
+          return false;
+        }
+      }
+    ));
   }
 
   getItems(): Restaurant[] {
-    return this.items;
-  }
-
-  createDummy(): Restaurant[] {
-    this.items.push(new Restaurant(1 , 'Restaurant 1'));
-    this.items.push(new Restaurant(2 , 'Restaurant 2'));
-    this.items.push(new Restaurant(3 , 'Restaurant 3'));
-
     return this.items;
   }
 
