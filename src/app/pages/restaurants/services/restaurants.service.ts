@@ -25,4 +25,18 @@ export class RestaurantsService {
     return this.items;
   }
 
+  get(id: number): Restaurant  {
+    if (this.items.length > 0) {
+      const index1  = this.items.findIndex((element) => {
+        return element.id === id;
+      });
+      if (index1 >= 0 ) {
+        return this.items[index1];
+      }
+    } else {
+      return null;
+    }
+    return null;
+  }
+
 }
