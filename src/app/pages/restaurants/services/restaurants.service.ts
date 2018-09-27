@@ -51,4 +51,19 @@ export class RestaurantsService {
     return null;
   }
 
+  delete(id: number) {
+    if (this.items.length > 0) {
+      const index1  = this.items.findIndex((element) => {
+        return element.id === id;
+      });
+      if (index1 >= 0 ) {
+        this.items.splice(index1, 1);
+        return true;
+      }
+    } else {
+      return false;
+    }
+    return false;
+  }
+
 }

@@ -1,9 +1,11 @@
 <div class="container" *ngIf="restaurant !== null" style='padding-top:20px;'>
-    
-
     <div class="row">
         <div class="col-md-8">
-            <h1>{{restaurant.name}}</h1>
+            <h1>{{restaurant.name}}
+                <span class="pull-right">
+                    <button type="button" class="btn btn-default" (click)="delete()">Delete</button>
+                </span>
+            </h1>
         </div>
 
         <div class="col-md-4">
