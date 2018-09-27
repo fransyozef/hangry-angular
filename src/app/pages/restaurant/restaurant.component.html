@@ -1,3 +1,14 @@
-<div class="container" *ngIf="restaurant !== null">
-    <h1>{{restaurant.name}}</h1>
+<div class="container" *ngIf="restaurant !== null" style='padding-top:20px;'>
+    
+
+    <div class="row">
+        <div class="col-md-8">
+            <h1>{{restaurant.name}}</h1>
+        </div>
+
+        <div class="col-md-4">
+            <h3>Restaurants</h3>
+            <app-restaurants-list></app-restaurants-list>
+        </div>
+    </div>
 </div>
