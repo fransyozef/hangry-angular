@@ -1,4 +1,6 @@
+import { RestaurantsService } from './../services/restaurants.service';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-restaurant-add',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestaurantAddComponent implements OnInit {
 
-  constructor() { }
+  addRestaurantForm: FormGroup;
+
+  constructor(
+    private restaurantsService: RestaurantsService,
+  ) { }
 
   ngOnInit() {
+    this.initForm();
   }
 
+  initForm() {
+    this.addRestaurantForm = new FormGroup({
+      name: new FormControl('' , Validators.required)
+    });
+  }
+
+  add() {
+    if(this.addRestaurantForm.valid) {
+      this.restaurantsService.add(this.addRestaurantForm.value);
+    }
+  }
 }

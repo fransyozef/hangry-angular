@@ -1,7 +1,8 @@
 import { RestaurantsService } from './../services/restaurants.service';
 import { Component, OnInit } from '@angular/core';
 
-import { Restaurant } from '../models/restaurant';
+import { Restaurant } from '../models/restaurant.model';
+
 
 @Component({
   selector: 'app-restaurants-list',
@@ -18,8 +19,7 @@ export class RestaurantsListComponent implements OnInit {
 
   ngOnInit() {
     this.restaurants = this.restaurantsService.getItems();
-
-    console.log(this.restaurants);
+    // console.log(this.restaurants);
   }
 
 }

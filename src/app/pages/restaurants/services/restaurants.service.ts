@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Restaurant } from '../models/restaurant';
+import { Restaurant } from '../models/restaurant.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +36,18 @@ export class RestaurantsService {
     } else {
       return null;
     }
+    return null;
+  }
+
+  add(data): Restaurant {
+
+    if (data) {
+      const id  = Math.floor(Math.random() * 1000) + 100;
+      const restaurant  = new Restaurant(id, data['name']);
+      this.items.push(restaurant);
+      return restaurant;
+    }
+
     return null;
   }
 

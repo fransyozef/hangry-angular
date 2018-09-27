@@ -2,7 +2,7 @@ import { RestaurantsService } from './../restaurants/services/restaurants.servic
 import { Component, OnInit , OnDestroy } from '@angular/core';
 
 // Models
-import { Restaurant } from './../restaurants/models/restaurant';
+import { Restaurant } from '../restaurants/models/restaurant.model';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -31,7 +31,7 @@ export class RestaurantComponent implements OnInit {
       if(params['id']) {
         this.id = +params['id']; // (+) converts string 'id' to a number
         this.restaurant  = this.restaurantsService.get(this.id);
-        console.log(this.restaurant);
+        // console.log(this.restaurant);
       }
    });
 

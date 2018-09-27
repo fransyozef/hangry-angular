@@ -1,7 +1,7 @@
-<form>
+<form [formGroup]="addRestaurantForm">
   <div class="form-group">
     <label>Name</label>
-    <input type="text" class="form-control" placeholder="Restaurant name">
+    <input type="text" class="form-control" placeholder="Restaurant name" formControlName="name">
   </div>
-  <button type="submit" class="btn btn-primary">Add</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!addRestaurantForm.valid" (click)="add()">Add</button>
 </form>
