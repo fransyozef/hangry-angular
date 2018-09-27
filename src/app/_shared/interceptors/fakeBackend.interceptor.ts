@@ -12,6 +12,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         return of(null).pipe(mergeMap(() => {
             // console.log(request.url);
 
+            // get list of restaurant
             if (request.url.endsWith('/restaurants') && request.method === 'GET') {
                 const body = {
                   success : true,
@@ -26,7 +27,27 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     }
                   ]
                 };
+                return of(new HttpResponse({ status: 200, body: body }));
+            }
 
+            // delete a restaurant
+            if (request.url.match(/\/restaurant\/\d+$/) && request.method === 'DELETE') {
+                const body = {
+                    success : true
+                  };
+                return of(new HttpResponse({ status: 200, body: body }));
+            }
+
+            // add a restaurant
+            if (request.url.endsWith('/restaurant') && request.method === 'POST') {
+                const newItem = request.body;
+                const body = {
+                  success : true,
+                  result : {
+                        id : Math.floor(Math.random() * 1000) + 100,
+                        name : newItem['name']
+                    }
+                };
                 return of(new HttpResponse({ status: 200, body: body }));
             }
 

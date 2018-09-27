@@ -52,31 +52,36 @@ export class RestaurantsService {
     return null;
   }
 
-  add(data): Restaurant {
-
-    if (data) {
-      const id  = Math.floor(Math.random() * 1000) + 100;
-      const restaurant  = new Restaurant(id, data['name']);
-      this.items.push(restaurant);
-      return restaurant;
-    }
-
-    return null;
+  add(newData): Observable<any> {
+    return this.http.post('/restaurant' , newData).pipe(
+      map((data: Response) => {
+        if (data && data['success'] && data['success'] === true) {
+          const restaurant  = new Restaurant(data['result']['id'], data['result']['name']);
+          this.items.push(restaurant);
+          return restaurant;
+        } else {
+          return false;
+        }
+      }
+    ));
   }
 
-  delete(id: number) {
-    if (this.items.length > 0) {
-      const index1  = this.items.findIndex((element) => {
-        return element.id === id;
-      });
-      if (index1 >= 0 ) {
-        this.items.splice(index1, 1);
-        return true;
+  delete(id: number): Observable<any> {
+    return this.http.delete('/restaurant/' + id).pipe(
+      map((data: Response) => {
+        if (data && data['success'] && data['success'] === true) {
+          const index1  = this.items.findIndex((element) => {
+            return element.id === id;
+          });
+          if (index1 >= 0 ) {
+            this.items.splice(index1, 1);
+            return true;
+          }
+        } else {
+          return false;
+        }
       }
-    } else {
-      return false;
-    }
-    return false;
+    ));
   }
 
 }

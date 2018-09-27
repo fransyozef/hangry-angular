@@ -36,10 +36,15 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 
   delete() {
-    if(this.restaurantsService.delete(this.id)) {
-      this.router.navigate(['/restaurants']);
-    }
+    this.restaurantsService.delete(this.id).subscribe(
+      (status) => {
+        if (status === true) {
+          this.router.navigate(['/restaurants']);
+        }
+      }
+    );
   }
+
 
   ngOnDestroy() {
     this.route_subscription.unsubscribe();
