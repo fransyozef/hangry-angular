@@ -1,9 +1,9 @@
-import { RestaurantsService } from './../restaurants/services/restaurants.service';
 import { Component, OnInit , OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 // Models
-import { Restaurant } from '../restaurants/models/restaurant.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Restaurant } from '../restaurants/_models/restaurant.model';
+import { RestaurantsService } from './../restaurants/_services/restaurants.service';
 
 @Component({
   selector: 'app-restaurant',
@@ -25,7 +25,6 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    // console.log(this.restaurant);
 
     this.route_subscription = this.route.params.subscribe(params => {
       if (params['id']) {
