@@ -28,6 +28,7 @@ export class RestaurantAddComponent implements OnInit {
   add() {
     if(this.addRestaurantForm.valid) {
       this.restaurantsService.add(this.addRestaurantForm.value);
+      this.addRestaurantForm.get('name').patchValue('');
     }
   }
 }
