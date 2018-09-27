@@ -1,0 +1,15 @@
+body {
+    padding-top: 200px !important;
+    
+  }
+
+  h1.test {
+      color:red !important;
+  }
+  
+  @media (min-width: 992px) {
+    body {
+      padding-top: 56px;
+    }
+  }
+  
