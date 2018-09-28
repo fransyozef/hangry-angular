@@ -20,7 +20,7 @@ export class RestaurantsService {
   }
 
   fetch(): Observable<any> {
-    return this.http.get('/restaurants').pipe(
+    return this.http.get('/api/restaurants').pipe(
       map((data: Response) => {
         if (data && data['success'] && data['success'] === true) {
           data['result'].map((element) => {
@@ -53,7 +53,7 @@ export class RestaurantsService {
   }
 
   add(newData): Observable<any> {
-    return this.http.post('/restaurant' , newData).pipe(
+    return this.http.post('/api/restaurant' , newData).pipe(
       map((data: Response) => {
         if (data && data['success'] && data['success'] === true) {
           const restaurant  = new Restaurant(data['result']['id'], data['result']['name']);
@@ -67,7 +67,7 @@ export class RestaurantsService {
   }
 
   delete(id: number): Observable<any> {
-    return this.http.delete('/restaurant/' + id).pipe(
+    return this.http.delete('/api/restaurant/' + id).pipe(
       map((data: Response) => {
         if (data && data['success'] && data['success'] === true) {
           const index1  = this.items.findIndex((element) => {

@@ -13,7 +13,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             // console.log(request.url);
 
             // get list of restaurant
-            if (request.url.endsWith('/restaurants') && request.method === 'GET') {
+            if (request.url.endsWith('/api/restaurants') && request.method === 'GET') {
                 const body = {
                   success : true,
                   result : [
@@ -31,7 +31,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             }
 
             // delete a restaurant
-            if (request.url.match(/\/restaurant\/\d+$/) && request.method === 'DELETE') {
+            if (request.url.match(/\/api\/restaurant\/\d+$/) && request.method === 'DELETE') {
                 const body = {
                     success : true
                   };
@@ -39,7 +39,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             }
 
             // add a restaurant
-            if (request.url.endsWith('/restaurant') && request.method === 'POST') {
+            if (request.url.endsWith('/api/restaurant') && request.method === 'POST') {
                 const newItem = request.body;
                 const body = {
                   success : true,
